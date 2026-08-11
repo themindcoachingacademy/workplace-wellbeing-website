@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded',()=>{
+  const style=document.createElement('style');
+  style.textContent=`.menu-toggle{display:none;width:44px;height:44px;border:1px solid rgba(255,255,255,.22);border-radius:7px;background:transparent;padding:10px;cursor:pointer}.menu-toggle span{display:block;height:2px;background:#fff;margin:5px 0;transition:.18s ease}@media(max-width:1040px){.menu-toggle{display:block;margin-left:auto}.nav-wrap,body>header nav{position:relative}.nav-links,.links{display:none!important;position:absolute;left:0;right:0;top:100%;z-index:50;background:#0b1017;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.1);padding:16px 4%;box-shadow:0 18px 35px rgba(0,0,0,.25);flex-direction:column;align-items:stretch;gap:0}.nav-open .nav-links,.nav-open .links{display:flex!important}.nav-links a,.links a{padding:13px 4px;border-bottom:1px solid rgba(255,255,255,.08)}.nav-links .btn,.links .btn{margin-top:10px;border-bottom:0}.nav-open .menu-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}.nav-open .menu-toggle span:nth-child(2){opacity:0}.nav-open .menu-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}}`;
+  document.head.appendChild(style);
   const nav=document.querySelector('.nav-wrap, body>header nav');
   const links=document.querySelector('.nav-links, .links');
   if(nav&&links){
