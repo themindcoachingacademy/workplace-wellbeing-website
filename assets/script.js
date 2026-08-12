@@ -4,8 +4,6 @@ document.addEventListener('DOMContentLoaded',()=>{
   .menu-toggle{display:none;width:44px;height:44px;border:1px solid rgba(255,255,255,.22);border-radius:50%;background:transparent;padding:10px;cursor:pointer}
   .menu-toggle span{display:block;height:2px;background:#fff;margin:5px 0;transition:.2s}
   .hero-trust{display:none!important}
-  .journey-note{margin-top:22px;color:#cfd8df;font-size:.9rem;font-weight:600;letter-spacing:.01em}
-  .journey-note strong{color:#fff}
   @media(max-width:1040px){
     .menu-toggle{display:block;margin-left:auto;flex:0 0 auto}.nav-wrap,body>header nav{position:relative;min-height:74px}.brand{width:min(225px,62vw)}.brand img{height:50px}
     .nav-links,.links{display:none!important;position:absolute;left:-4%;right:-4%;top:100%;z-index:60;background:#081019;border-top:1px solid rgba(255,255,255,.08);padding:10px 5% 20px;box-shadow:0 22px 50px rgba(0,0,0,.28);flex-direction:column;align-items:stretch;gap:0}
@@ -20,32 +18,32 @@ document.addEventListener('DOMContentLoaded',()=>{
   }`;
   document.head.appendChild(style);
 
+  const page=(location.pathname.split('/').pop()||'index.html').toLowerCase();
+  const isHome=page==='index.html'||page==='';
   const links=document.querySelector('.nav-links, .links');
   if(links){
-    links.innerHTML='<a href="organisations.html">Why It Matters</a><a href="index.html#support-options">Support Options</a><a href="about.html">About</a><a class="btn btn-gold" href="contact.html">Contact Steven</a>';
+    links.innerHTML=`<a href="organisations.html">Why It Matters</a><a href="${isHome?'#support-options':'index.html#support-options'}">Support Options</a><a href="about.html">About</a><a class="btn btn-gold" href="contact.html">Contact Steven</a>`;
   }
 
   const supportTable=document.querySelector('.decision-table');
-  if(supportTable){
-    const supportSection=supportTable.closest('section');
-    if(supportSection) supportSection.id='support-options';
-  }
+  if(supportTable){const section=supportTable.closest('section');if(section)section.id='support-options';}
 
-  const isHome=/index\.html$/.test(location.pathname)||location.pathname.endsWith('/');
   if(isHome){
     const heroActions=document.querySelector('.hero-home .actions');
-    if(heroActions){
-      heroActions.innerHTML='<a class="btn btn-gold" href="#support-options">See How We Help</a>';
-      const note=document.createElement('div');
-      note.className='journey-note';
-      note.innerHTML='<strong>One clear route:</strong> understand the employer benefit, choose the right support option, then speak with Steven.';
-      heroActions.insertAdjacentElement('afterend',note);
-    }
+    if(heroActions)heroActions.innerHTML='<a class="btn btn-gold" href="#support-options">See How We Help</a>';
     const standardsBtn=document.querySelector('.section-dark .btn[href="standards.html"]');
     if(standardsBtn){standardsBtn.className='text-link';standardsBtn.textContent='Professional standards →';}
     const nhsBtn=document.querySelector('#nhs-evidence .btn');
     if(nhsBtn){nhsBtn.className='text-link';nhsBtn.textContent='See the full employer evidence →';}
   }
+
+  if(page==='organisations.html'){
+    const heroActions=document.querySelector('.pagehero .actions');
+    if(heroActions)heroActions.innerHTML='<a class="btn btn-gold" href="#business-impact">See the Employer Impact</a>';
+  }
+
+  const footerEmployer=document.querySelector('.footer-grid>div:nth-child(3)');
+  if(footerEmployer)footerEmployer.innerHTML='<strong>Start Here</strong><a href="organisations.html">Why It Matters</a><a href="index.html#support-options">Support Options</a><a href="contact.html">Contact Steven</a>';
 
   const nav=document.querySelector('.nav-wrap, body>header nav');
   if(!nav||!links)return;
