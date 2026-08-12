@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   style.textContent=`
   .menu-toggle{display:none;width:44px;height:44px;border:1px solid rgba(255,255,255,.22);border-radius:50%;background:transparent;padding:10px;cursor:pointer}
   .menu-toggle span{display:block;height:2px;background:#fff;margin:5px 0;transition:.2s}
-  .hero-trust{display:none!important}
+  .hero-trust{display:none!important}.contact-direct{max-width:760px}.contact-direct .phone-alt{margin-top:16px;font-size:1rem;color:#52606b}.contact-direct .phone-alt a{font-weight:800;color:#765214;text-decoration:none}
   @media(max-width:1040px){
     .menu-toggle{display:block;margin-left:auto;flex:0 0 auto}.nav-wrap,body>header nav{position:relative;min-height:74px}.brand{width:min(225px,62vw)}.brand img{height:50px}
     .nav-links,.links{display:none!important;position:absolute;left:-4%;right:-4%;top:100%;z-index:60;background:#081019;border-top:1px solid rgba(255,255,255,.08);padding:10px 5% 20px;box-shadow:0 22px 50px rgba(0,0,0,.28);flex-direction:column;align-items:stretch;gap:0}
@@ -21,9 +21,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   const page=(location.pathname.split('/').pop()||'index.html').toLowerCase();
   const isHome=page==='index.html'||page==='';
   const links=document.querySelector('.nav-links, .links');
-  if(links){
-    links.innerHTML=`<a href="organisations.html">Why It Matters</a><a href="${isHome?'#support-options':'index.html#support-options'}">Support Options</a><a href="about.html">About</a><a class="btn btn-gold" href="contact.html">Contact Steven</a>`;
-  }
+  if(links){links.innerHTML=`<a href="organisations.html">Why It Matters</a><a href="${isHome?'#support-options':'index.html#support-options'}">Support Options</a><a href="about.html">About</a><a class="btn btn-gold" href="contact.html">Contact Steven</a>`;}
 
   const supportTable=document.querySelector('.decision-table');
   if(supportTable){const section=supportTable.closest('section');if(section)section.id='support-options';}
@@ -40,6 +38,21 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(page==='organisations.html'){
     const heroActions=document.querySelector('.pagehero .actions');
     if(heroActions)heroActions.innerHTML='<a class="btn btn-gold" href="#business-impact">See the Employer Impact</a>';
+  }
+
+  if(page==='contact.html'){
+    const heroActions=document.querySelector('.pagehero .actions');
+    if(heroActions)heroActions.innerHTML='<a class="btn btn-gold" href="#contact-steven">Contact Steven</a>';
+    const firstSection=document.querySelector('main .section');
+    if(firstSection){
+      firstSection.id='contact-steven';
+      const heading=firstSection.querySelector('.section-heading');
+      if(heading)heading.innerHTML='<div class="eyebrow">Contact Steven directly</div><h2>Start with a short email.</h2><p class="lead">You do not need a formal specification. A few lines about the workforce problem, approximate size and what you want to improve are enough to begin.</p>';
+      const grid=firstSection.querySelector('.grid2');
+      if(grid){grid.className='contact-direct';grid.innerHTML='<article class="service-card"><div class="card-number">01</div><h3>Email Steven</h3><p>Send a short outline to <strong>the.mind.coaching.academy@gmail.com</strong>. I can then come back to you with the most useful next step.</p><a class="btn btn-gold" href="mailto:the.mind.coaching.academy@gmail.com?subject=Workplace%20Wellbeing%20Employer%20Enquiry">Start an Employer Enquiry</a><p class="phone-alt">Prefer to speak? Call <a href="tel:+447368348793">07368 348793</a>.</p></article>';}
+    }
+    const finalActions=document.querySelector('.cta-panel .actions');
+    if(finalActions)finalActions.innerHTML='<a class="btn btn-gold" href="mailto:the.mind.coaching.academy@gmail.com?subject=Workplace%20Wellbeing%20Employer%20Enquiry">Start an Employer Enquiry</a>';
   }
 
   const footerEmployer=document.querySelector('.footer-grid>div:nth-child(3)');
