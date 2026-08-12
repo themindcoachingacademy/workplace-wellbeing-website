@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   .menu-toggle{display:none;width:44px;height:44px;border:1px solid rgba(255,255,255,.22);border-radius:50%;background:transparent;padding:10px;cursor:pointer}
   .menu-toggle span{display:block;height:2px;background:#fff;margin:5px 0;transition:.2s}
   .hero-trust{display:none!important}.contact-direct{max-width:760px}.contact-direct .phone-alt{margin-top:16px;font-size:1rem;color:#52606b}.contact-direct .phone-alt a{font-weight:800;color:#765214;text-decoration:none}
+  .change-method{background:#f8f5ef}.change-method .method-intro{max-width:850px;margin-bottom:38px}.method-note{margin-top:26px;font-size:.86rem;color:#6b7680;max-width:900px}
   @media(max-width:1040px){
     .menu-toggle{display:block;margin-left:auto;flex:0 0 auto}.nav-wrap,body>header nav{position:relative;min-height:74px}.brand{width:min(225px,62vw)}.brand img{height:50px}
     .nav-links,.links{display:none!important;position:absolute;left:-4%;right:-4%;top:100%;z-index:60;background:#081019;border-top:1px solid rgba(255,255,255,.08);padding:10px 5% 20px;box-shadow:0 22px 50px rgba(0,0,0,.28);flex-direction:column;align-items:stretch;gap:0}
@@ -26,6 +27,24 @@ document.addEventListener('DOMContentLoaded',()=>{
   const supportTable=document.querySelector('.decision-table');
   if(supportTable){const section=supportTable.closest('section');if(section)section.id='support-options';}
 
+  document.querySelectorAll('.process-card>div').forEach(row=>{
+    const number=row.querySelector('span');
+    const text=row.querySelector('p');
+    if(number&&number.textContent.trim()==='0'){
+      number.textContent='4';
+      if(text&&/routine disclosure/i.test(text.textContent)){
+        text.innerHTML='<strong>Confidentiality boundary</strong><br>No routine disclosure of private session content. Individual conversations remain confidential within defined safeguarding, serious-risk and legal exceptions.';
+      }
+    }
+  });
+
+  const createMethodSection=(detailed=false)=>{
+    const section=document.createElement('section');
+    section.className='section change-method';
+    section.innerHTML=detailed?`<div class="container"><div class="method-intro"><div class="eyebrow">How 1:1 support creates change</div><h2>We work on the pattern driving the problem — not only the conversation about it.</h2><p class="lead">Depending on the employee and the issue, Steven draws on NLP coaching and related change techniques to help the person understand what is happening internally, interrupt unhelpful automatic responses and practise more useful alternatives for real workplace situations.</p></div><div class="benefit-grid"><div class="benefit-card"><div class="benefit-icon">01</div><h3>Map the thought-response pattern</h3><p>Identify the trigger, internal thoughts, emotional response and behaviour that keep repeating, so the employee can see where change is possible.</p></div><div class="benefit-card"><div class="benefit-icon">02</div><h3>Change limiting beliefs</h3><p>Challenge rigid conclusions such as “I cannot cope”, “I always get this wrong” or “I am not confident enough” when they are shaping behaviour and performance.</p></div><div class="benefit-card"><div class="benefit-icon">03</div><h3>Use anchoring and resource states</h3><p>Help the employee deliberately reconnect with calmer, more confident or focused internal states when they need them under pressure.</p></div><div class="benefit-card"><div class="benefit-icon">04</div><h3>Work with triggers</h3><p>Where appropriate, reduce the intensity of automatic emotional reactions linked to particular situations, conversations or memories.</p></div><div class="benefit-card"><div class="benefit-icon">05</div><h3>Reframe meaning</h3><p>Explore alternative interpretations and perspectives when the meaning attached to an event is driving anxiety, overwhelm or unhelpful behaviour.</p></div><div class="benefit-card"><div class="benefit-icon">06</div><h3>Future-rehearse the new response</h3><p>Mentally and practically rehearse handling meetings, deadlines, difficult conversations or other known pressure points in a more useful way.</p></div></div><p class="method-note">The approach is personalised rather than protocol-led. It is coaching and therapeutic change work within professional scope, and does not replace medical, psychiatric or other clinical care where that is indicated.</p></div>`:`<div class="container"><div class="section-heading"><div class="eyebrow">What happens inside 1:1 support</div><h2>More than talking: identify the pattern, change the response, rehearse what works better.</h2><p class="lead">The work can include changing limiting beliefs, reframing unhelpful meanings, anchoring calmer or more confident resource states, working with emotional triggers and building new thought-response patterns for situations the employee actually faces at work.</p></div><div class="cards-3"><article class="service-card"><div class="card-number">01</div><h3>Identify the pattern</h3><p>Map what triggers the difficulty and how thoughts, emotions and automatic responses interact.</p></article><article class="service-card"><div class="card-number">02</div><h3>Change the response</h3><p>Use tailored NLP coaching techniques to challenge limiting beliefs, reframe meaning and create more useful internal states.</p></article><article class="service-card"><div class="card-number">03</div><h3>Apply it at work</h3><p>Future-rehearse the new response so the employee can use it in the situations that previously triggered the problem.</p></article></div><p style="margin-top:26px"><a class="text-link" href="employee-support.html">See how 1:1 change work is delivered →</a></p></div>`;
+    return section;
+  };
+
   if(isHome){
     const heroActions=document.querySelector('.hero-home .actions');
     if(heroActions)heroActions.innerHTML='<a class="btn btn-gold" href="#support-options">See How We Help</a>';
@@ -33,6 +52,12 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(standardsBtn){standardsBtn.className='text-link';standardsBtn.textContent='Professional standards →';}
     const nhsBtn=document.querySelector('#nhs-evidence .btn');
     if(nhsBtn){nhsBtn.className='text-link';nhsBtn.textContent='See the full employer evidence →';}
+    if(supportTable){const supportSection=supportTable.closest('section');if(supportSection&&!document.querySelector('.change-method'))supportSection.insertAdjacentElement('afterend',createMethodSection(false));}
+  }
+
+  if(page==='employee-support.html'){
+    const darkAccess=[...document.querySelectorAll('main section')].find(s=>/How access works/i.test(s.textContent));
+    if(darkAccess&&!document.querySelector('.change-method'))darkAccess.insertAdjacentElement('beforebegin',createMethodSection(true));
   }
 
   if(page==='organisations.html'){
