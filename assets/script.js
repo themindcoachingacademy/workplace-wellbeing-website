@@ -3,6 +3,9 @@ document.addEventListener('DOMContentLoaded',()=>{
   style.textContent=`
   .menu-toggle{display:none;width:44px;height:44px;border:1px solid rgba(255,255,255,.22);border-radius:50%;background:transparent;padding:10px;cursor:pointer}
   .menu-toggle span{display:block;height:2px;background:#fff;margin:5px 0;transition:.2s}
+  .hero-trust{display:none!important}
+  .journey-note{margin-top:22px;color:#cfd8df;font-size:.9rem;font-weight:600;letter-spacing:.01em}
+  .journey-note strong{color:#fff}
   @media(max-width:1040px){
     .menu-toggle{display:block;margin-left:auto;flex:0 0 auto}.nav-wrap,body>header nav{position:relative;min-height:74px}.brand{width:min(225px,62vw)}.brand img{height:50px}
     .nav-links,.links{display:none!important;position:absolute;left:-4%;right:-4%;top:100%;z-index:60;background:#081019;border-top:1px solid rgba(255,255,255,.08);padding:10px 5% 20px;box-shadow:0 22px 50px rgba(0,0,0,.28);flex-direction:column;align-items:stretch;gap:0}
@@ -16,8 +19,35 @@ document.addEventListener('DOMContentLoaded',()=>{
     .section,main>section:not(.hero):not(.pagehero):not(.trust-strip):not(.credential-rail):not(.stats-band):not(.darksec):not(.alt),.section-dark,.darksec,.alt{padding:54px 0}.stats-band{padding:46px 0}.section-heading{margin-bottom:28px}.cards-3,.grid3,.grid2,.decision-table,.stats-grid,.trust-grid,.credential-rail .container,.proof-band,.footer-grid{grid-template-columns:1fr!important}.credential-rail span{border-right:0;border-bottom:1px solid var(--line);padding:14px 16px}.actions{display:grid;align-items:stretch;gap:10px}.actions .btn{width:100%}.cta-panel,.cta{padding:28px 22px;border-radius:16px}.cta-panel .btn{width:100%}.image-feature,.pagehero-image{min-height:310px}.visual-note{left:14px;right:14px;bottom:14px;padding:14px 15px}.editorial-panel{padding:28px 22px}.service-card,.highlight-card,.card{padding:24px}.decision-table>div{padding:24px}.stat-card{padding:22px}.process-card{padding:8px 20px}.process-card>div{padding:17px 0}.employer-lens,.service-difference{padding:28px 22px}.outcome-item{padding:17px 18px}.stats-intro{display:block}.stats-source{margin-top:16px;text-align:left}.footer-logo{width:min(230px,82%)}h2{font-size:2.2rem}.stat-number{font-size:2.35rem}
   }`;
   document.head.appendChild(style);
-  const nav=document.querySelector('.nav-wrap, body>header nav');
+
   const links=document.querySelector('.nav-links, .links');
+  if(links){
+    links.innerHTML='<a href="organisations.html">Why It Matters</a><a href="index.html#support-options">Support Options</a><a href="about.html">About</a><a class="btn btn-gold" href="contact.html">Contact Steven</a>';
+  }
+
+  const supportTable=document.querySelector('.decision-table');
+  if(supportTable){
+    const supportSection=supportTable.closest('section');
+    if(supportSection) supportSection.id='support-options';
+  }
+
+  const isHome=/index\.html$/.test(location.pathname)||location.pathname.endsWith('/');
+  if(isHome){
+    const heroActions=document.querySelector('.hero-home .actions');
+    if(heroActions){
+      heroActions.innerHTML='<a class="btn btn-gold" href="#support-options">See How We Help</a>';
+      const note=document.createElement('div');
+      note.className='journey-note';
+      note.innerHTML='<strong>One clear route:</strong> understand the employer benefit, choose the right support option, then speak with Steven.';
+      heroActions.insertAdjacentElement('afterend',note);
+    }
+    const standardsBtn=document.querySelector('.section-dark .btn[href="standards.html"]');
+    if(standardsBtn){standardsBtn.className='text-link';standardsBtn.textContent='Professional standards →';}
+    const nhsBtn=document.querySelector('#nhs-evidence .btn');
+    if(nhsBtn){nhsBtn.className='text-link';nhsBtn.textContent='See the full employer evidence →';}
+  }
+
+  const nav=document.querySelector('.nav-wrap, body>header nav');
   if(!nav||!links)return;
   const btn=document.createElement('button');
   btn.className='menu-toggle';btn.type='button';btn.setAttribute('aria-label','Open navigation');btn.setAttribute('aria-expanded','false');btn.innerHTML='<span></span><span></span><span></span>';nav.insertBefore(btn,links);
