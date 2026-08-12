@@ -4,64 +4,15 @@ document.addEventListener('DOMContentLoaded',()=>{
   .menu-toggle{display:none;width:44px;height:44px;border:1px solid rgba(255,255,255,.22);border-radius:50%;background:transparent;padding:10px;cursor:pointer}
   .menu-toggle span{display:block;height:2px;background:#fff;margin:5px 0;transition:.2s}
   .hero-trust{display:none!important}.contact-direct{max-width:760px}.contact-direct .phone-alt{margin-top:16px;font-size:1rem;color:#52606b}.contact-direct .phone-alt a{font-weight:800;color:#765214;text-decoration:none}
-  @media(max-width:1040px){
-    .menu-toggle{display:block;margin-left:auto;flex:0 0 auto}.nav-wrap,body>header nav{position:relative;min-height:74px}.brand{width:min(225px,62vw)}.brand img{height:50px}
-    .nav-links,.links{display:none!important;position:absolute;left:-4%;right:-4%;top:100%;z-index:60;background:#081019;border-top:1px solid rgba(255,255,255,.08);padding:10px 5% 20px;box-shadow:0 22px 50px rgba(0,0,0,.28);flex-direction:column;align-items:stretch;gap:0}
-    .nav-open .nav-links,.nav-open .links{display:flex!important}.nav-links a,.links a{padding:15px 4px;border-bottom:1px solid rgba(255,255,255,.08);font-size:.95rem!important}.nav-links .btn,.links .btn{margin-top:14px;border-bottom:0;min-height:48px}
-    .nav-open .menu-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}.nav-open .menu-toggle span:nth-child(2){opacity:0}.nav-open .menu-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-    .hero-grid,.pagehero-visual,.split,.photo-grid,.editorial-grid,.cta-panel{grid-template-columns:1fr!important}.hero-visual{min-height:500px}.hero-photo{inset:0 0 54px 0}.floating-card{width:min(390px,90%)}.cards-3,.grid3,.decision-table{grid-template-columns:repeat(2,1fr)!important}.stats-grid,.trust-grid,.credential-rail .container{grid-template-columns:repeat(2,1fr)!important}.footer-grid{grid-template-columns:1fr 1fr!important}
-  }
-  @media(max-width:680px){
-    .topbar-inner,.top .container{display:none}.container{width:min(91%,620px)}.nav-wrap,body>header nav{min-height:68px}.brand{width:min(180px,56vw)}.brand img{height:44px}.menu-toggle{width:42px;height:42px}
-    .hero-home,.pagehero{padding:46px 0 52px}.hero-grid,.pagehero-visual,.split{gap:30px}.hero h1,.pagehero h1{font-size:clamp(2.45rem,12vw,3.6rem);line-height:1.01}.hero-lead,.lead,.dark-lead{font-size:.98rem;line-height:1.7}.hero-visual{min-height:360px}.hero-photo{inset:0 0 38px 0;border-radius:18px}.floating-card{padding:16px 18px;left:10px;right:10px;width:auto}.floating-card strong{font-size:.98rem}.floating-card p{font-size:.82rem}
-    .section,main>section:not(.hero):not(.pagehero):not(.trust-strip):not(.credential-rail):not(.stats-band):not(.darksec):not(.alt),.section-dark,.darksec,.alt{padding:54px 0}.stats-band{padding:46px 0}.section-heading{margin-bottom:28px}.cards-3,.grid3,.grid2,.decision-table,.stats-grid,.trust-grid,.credential-rail .container,.proof-band,.footer-grid{grid-template-columns:1fr!important}.credential-rail span{border-right:0;border-bottom:1px solid var(--line);padding:14px 16px}.actions{display:grid;align-items:stretch;gap:10px}.actions .btn{width:100%}.cta-panel,.cta{padding:28px 22px;border-radius:16px}.cta-panel .btn{width:100%}.image-feature,.pagehero-image{min-height:310px}.visual-note{left:14px;right:14px;bottom:14px;padding:14px 15px}.editorial-panel{padding:28px 22px}.service-card,.highlight-card,.card{padding:24px}.decision-table>div{padding:24px}.stat-card{padding:22px}.process-card{padding:8px 20px}.process-card>div{padding:17px 0}.employer-lens,.service-difference{padding:28px 22px}.outcome-item{padding:17px 18px}.stats-intro{display:block}.stats-source{margin-top:16px;text-align:left}.footer-logo{width:min(230px,82%)}h2{font-size:2.2rem}.stat-number{font-size:2.35rem}
-  }`;
-  document.head.appendChild(style);
-
-  const page=(location.pathname.split('/').pop()||'index.html').toLowerCase();
-  const isHome=page==='index.html'||page==='';
-  const links=document.querySelector('.nav-links, .links');
-  if(links){links.innerHTML='<a href="organisations.html">Why It Matters</a><a href="about.html">About</a><a class="btn btn-gold" href="contact.html">Contact Steven</a>';}
-
-  document.querySelectorAll('.process-card>div').forEach(row=>{
-    const number=row.querySelector('span');
-    const text=row.querySelector('p');
-    if(number&&number.textContent.trim()==='0'){
-      number.textContent='4';
-      if(text&&/routine disclosure/i.test(text.textContent))text.innerHTML='<strong>Confidentiality boundary</strong><br>No routine disclosure of private session content. Individual conversations remain confidential within defined safeguarding, serious-risk and legal exceptions.';
-    }
-  });
-
-  if(isHome){
-    const heroActions=document.querySelector('.hero-home .actions');
-    if(heroActions)heroActions.innerHTML='<a class="btn btn-gold" href="contact.html">Discuss Your Workforce</a>';
-  }
-
-  if(page==='organisations.html'){
-    const heroActions=document.querySelector('.pagehero .actions');
-    if(heroActions)heroActions.innerHTML='<a class="btn btn-gold" href="#business-impact">See the Employer Impact</a>';
-  }
-
-  if(page==='contact.html'){
-    const heroActions=document.querySelector('.pagehero .actions');
-    if(heroActions)heroActions.innerHTML='<a class="btn btn-gold" href="#contact-steven">Contact Steven</a>';
-    const firstSection=document.querySelector('main .section');
-    if(firstSection){
-      firstSection.id='contact-steven';
-      const heading=firstSection.querySelector('.section-heading');
-      if(heading)heading.innerHTML='<div class="eyebrow">Contact Steven directly</div><h2>Start with a short email.</h2><p class="lead">You do not need a formal specification. A few lines about the workforce problem, approximate size and what you want to improve are enough to begin.</p>';
-      const grid=firstSection.querySelector('.grid2');
-      if(grid){grid.className='contact-direct';grid.innerHTML='<article class="service-card"><div class="card-number">01</div><h3>Email Steven</h3><p>Send a short outline to <strong>the.mind.coaching.academy@gmail.com</strong>. I can then come back to you with the most useful next step.</p><a class="btn btn-gold" href="mailto:the.mind.coaching.academy@gmail.com?subject=Workplace%20Wellbeing%20Employer%20Enquiry">Start an Employer Enquiry</a><p class="phone-alt">Prefer to speak? Call <a href="tel:+447368348793">07368 348793</a>.</p></article>';}
-    }
-  }
-
-  const footerEmployer=document.querySelector('.footer-grid>div:nth-child(3)');
-  if(footerEmployer)footerEmployer.innerHTML='<strong>Start Here</strong><a href="organisations.html">Why It Matters</a><a href="about.html">About</a><a href="contact.html">Contact Steven</a>';
-
-  const nav=document.querySelector('.nav-wrap, body>header nav');
-  if(!nav||!links)return;
-  const btn=document.createElement('button');
-  btn.className='menu-toggle';btn.type='button';btn.setAttribute('aria-label','Open navigation');btn.setAttribute('aria-expanded','false');btn.innerHTML='<span></span><span></span><span></span>';nav.insertBefore(btn,links);
-  btn.addEventListener('click',()=>{const open=nav.classList.toggle('nav-open');btn.setAttribute('aria-expanded',String(open));btn.setAttribute('aria-label',open?'Close navigation':'Open navigation')});
-  links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('nav-open');btn.setAttribute('aria-expanded','false')}));
+  @media(max-width:1040px){.menu-toggle{display:block;margin-left:auto;flex:0 0 auto}.nav-wrap,body>header nav{position:relative;min-height:74px}.brand{width:min(225px,62vw)}.brand img{height:50px}.nav-links,.links{display:none!important;position:absolute;left:-4%;right:-4%;top:100%;z-index:60;background:#081019;border-top:1px solid rgba(255,255,255,.08);padding:10px 5% 20px;box-shadow:0 22px 50px rgba(0,0,0,.28);flex-direction:column;align-items:stretch;gap:0}.nav-open .nav-links,.nav-open .links{display:flex!important}.nav-links a,.links a{padding:15px 4px;border-bottom:1px solid rgba(255,255,255,.08);font-size:.95rem!important}.nav-links .btn,.links .btn{margin-top:14px;border-bottom:0;min-height:48px}.nav-open .menu-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}.nav-open .menu-toggle span:nth-child(2){opacity:0}.nav-open .menu-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}.hero-grid,.pagehero-visual,.split,.photo-grid,.editorial-grid,.cta-panel{grid-template-columns:1fr!important}.hero-visual{min-height:500px}.hero-photo{inset:0 0 54px 0}.floating-card{width:min(390px,90%)}.cards-3,.grid3,.decision-table{grid-template-columns:repeat(2,1fr)!important}.stats-grid,.trust-grid,.credential-rail .container{grid-template-columns:repeat(2,1fr)!important}.footer-grid{grid-template-columns:1fr 1fr!important}}
+  @media(max-width:680px){.topbar-inner,.top .container{display:none}.container{width:min(91%,620px)}.nav-wrap,body>header nav{min-height:68px}.brand{width:min(180px,56vw)}.brand img{height:44px}.menu-toggle{width:42px;height:42px}.hero-home,.pagehero{padding:46px 0 52px}.hero-grid,.pagehero-visual,.split{gap:30px}.hero h1,.pagehero h1{font-size:clamp(2.45rem,12vw,3.6rem);line-height:1.01}.hero-lead,.lead,.dark-lead{font-size:.98rem;line-height:1.7}.hero-visual{min-height:360px}.hero-photo{inset:0 0 38px 0;border-radius:18px}.floating-card{padding:16px 18px;left:10px;right:10px;width:auto}.floating-card strong{font-size:.98rem}.floating-card p{font-size:.82rem}.section,main>section:not(.hero):not(.pagehero):not(.trust-strip):not(.credential-rail):not(.stats-band):not(.darksec):not(.alt),.section-dark,.darksec,.alt{padding:54px 0}.stats-band{padding:46px 0}.section-heading{margin-bottom:28px}.cards-3,.grid3,.grid2,.decision-table,.stats-grid,.trust-grid,.credential-rail .container,.proof-band,.footer-grid{grid-template-columns:1fr!important}.credential-rail span{border-right:0;border-bottom:1px solid var(--line);padding:14px 16px}.actions{display:grid;align-items:stretch;gap:10px}.actions .btn{width:100%}.cta-panel,.cta{padding:28px 22px;border-radius:16px}.cta-panel .btn{width:100%}.image-feature,.pagehero-image{min-height:310px}.visual-note{left:14px;right:14px;bottom:14px;padding:14px 15px}.editorial-panel{padding:28px 22px}.service-card,.highlight-card,.card{padding:24px}.decision-table>div{padding:24px}.stat-card{padding:22px}.process-card{padding:8px 20px}.process-card>div{padding:17px 0}.employer-lens,.service-difference{padding:28px 22px}.outcome-item{padding:17px 18px}.stats-intro{display:block}.stats-source{margin-top:16px;text-align:left}.footer-logo{width:min(230px,82%)}h2{font-size:2.2rem}.stat-number{font-size:2.35rem}}
+  `;document.head.appendChild(style);
+  const page=(location.pathname.split('/').pop()||'index.html').toLowerCase();const isHome=page==='index.html'||page==='';const links=document.querySelector('.nav-links, .links');
+  if(links)links.innerHTML='<a href="organisations.html">Why It Matters</a><a href="employee-support.html">How We Work</a><a href="about.html">About</a><a class="btn btn-gold" href="contact.html">Contact Steven</a>';
+  document.querySelectorAll('.process-card>div').forEach(row=>{const number=row.querySelector('span');const text=row.querySelector('p');if(number&&number.textContent.trim()==='0'){number.textContent='4';if(text&&/routine disclosure/i.test(text.textContent))text.innerHTML='<strong>Confidentiality boundary</strong><br>No routine disclosure of private session content. Individual conversations remain confidential within defined safeguarding, serious-risk and legal exceptions.';}});
+  if(isHome){const heroActions=document.querySelector('.hero-home .actions');if(heroActions)heroActions.innerHTML='<a class="btn btn-gold" href="contact.html">Discuss Your Workforce</a>';}
+  if(page==='organisations.html'){const heroActions=document.querySelector('.pagehero .actions');if(heroActions)heroActions.innerHTML='<a class="btn btn-gold" href="#business-impact">See the Employer Impact</a>';}
+  if(page==='contact.html'){const heroActions=document.querySelector('.pagehero .actions');if(heroActions)heroActions.innerHTML='<a class="btn btn-gold" href="#contact-steven">Contact Steven</a>';const firstSection=document.querySelector('main .section');if(firstSection){firstSection.id='contact-steven';const heading=firstSection.querySelector('.section-heading');if(heading)heading.innerHTML='<div class="eyebrow">Contact Steven directly</div><h2>Start with a short email.</h2><p class="lead">You do not need a formal specification. A few lines about the workforce problem, approximate size and what you want to improve are enough to begin.</p>';const grid=firstSection.querySelector('.grid2');if(grid){grid.className='contact-direct';grid.innerHTML='<article class="service-card"><div class="card-number">01</div><h3>Email Steven</h3><p>Send a short outline to <strong>the.mind.coaching.academy@gmail.com</strong>. I can then come back to you with the most useful next step.</p><a class="btn btn-gold" href="mailto:the.mind.coaching.academy@gmail.com?subject=Workplace%20Wellbeing%20Employer%20Enquiry">Start an Employer Enquiry</a><p class="phone-alt">Prefer to speak? Call <a href="tel:+447368348793">07368 348793</a>.</p></article>';}}}
+  const footerEmployer=document.querySelector('.footer-grid>div:nth-child(3)');if(footerEmployer)footerEmployer.innerHTML='<strong>Start Here</strong><a href="organisations.html">Why It Matters</a><a href="employee-support.html">How We Work</a><a href="about.html">About</a><a href="contact.html">Contact Steven</a>';
+  const nav=document.querySelector('.nav-wrap, body>header nav');if(!nav||!links)return;const btn=document.createElement('button');btn.className='menu-toggle';btn.type='button';btn.setAttribute('aria-label','Open navigation');btn.setAttribute('aria-expanded','false');btn.innerHTML='<span></span><span></span><span></span>';nav.insertBefore(btn,links);btn.addEventListener('click',()=>{const open=nav.classList.toggle('nav-open');btn.setAttribute('aria-expanded',String(open));btn.setAttribute('aria-label',open?'Close navigation':'Open navigation')});links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('nav-open');btn.setAttribute('aria-expanded','false')}));
 });
