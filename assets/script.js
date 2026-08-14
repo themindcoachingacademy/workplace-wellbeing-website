@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
   if(isHome){
     const heroActions=document.querySelector('.hero-home .actions');if(heroActions)heroActions.innerHTML='<a class="btn btn-gold" href="contact.html">Discuss Your Workforce</a>';
+    document.querySelectorAll('.decision-table .text-link').forEach(a=>a.remove());
 
     const toolkitHeading=[...document.querySelectorAll('.section-heading .eyebrow')].find(e=>/full 1:1 change toolkit/i.test(e.textContent));
     const toolkit=toolkitHeading?toolkitHeading.closest('section'):null;
