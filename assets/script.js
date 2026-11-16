@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(isHome)document.body.classList.add('home-page');
   if(page==='about.html')document.body.classList.add('about-page');
   const links=document.querySelector('.nav-links, .links');
+  if(links)links.querySelectorAll('a[href]').forEach(a=>{const target=a.getAttribute('href').split('?')[0];if(target===page)a.setAttribute('aria-current','page')});
 
 
 
