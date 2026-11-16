@@ -13,3 +13,9 @@
 .stats-band .stat-number{color:#92651f}
 @media(max-width:1040px){.nav-links{gap:10px}.nav-links>a{font-size:.78rem!important}.brand{width:220px;flex-basis:220px}}
 @media(max-width:720px){.nav-wrap{flex-wrap:wrap;padding:12px 0}.brand{width:210px;flex-basis:210px}.nav-links{width:100%;justify-content:flex-start;flex-wrap:wrap;gap:10px 15px}.nav-links>a{font-size:.78rem!important}.nav-links .btn{min-height:38px;padding:8px 14px}.pagehero-visual,.hero-grid,.split{grid-template-columns:1fr!important}.pagehero-image{min-height:230px!important}.hero h1,.pagehero h1{overflow-wrap:break-word}}
+
+/* Clearer Mind CIC: final interaction and responsive refinements */
+.nav-links a:focus-visible,.menu-toggle:focus-visible,.btn:focus-visible,.text-link:focus-visible{outline:3px solid #d5a24a;outline-offset:4px}
+.service-card p,.highlight-card p,.outcome-item span{overflow-wrap:break-word}
+@media(max-width:1040px){.nav-wrap .nav-links{display:none}.nav-wrap.nav-open .nav-links{display:flex}.nav-wrap .menu-toggle{display:block}}
+@media(max-width:680px){.hero-home .actions .btn{white-space:normal;text-align:center}.pagehero .actions .btn{white-space:normal;text-align:center}.footer-grid a{min-height:30px}.hero-lead,.lead,.dark-lead{overflow-wrap:break-word}}
