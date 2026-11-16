@@ -1,0 +1,31 @@
+name: Clearer Mind development visual QA
+on:
+  push:
+    branches: [clearer-mind-cic-rebuild]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  visual-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Chromium browser
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Run desktop and mobile checks
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/clearer-mind-server.log 2>&1 &
+          node .github/scripts/visual-qa.cjs
+      - name: Upload development screenshots and QA report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: clearer-mind-dev-visual-qa
+          path: qa-output/
+          if-no-files-found: warn
