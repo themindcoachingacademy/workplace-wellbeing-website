@@ -19,3 +19,8 @@
 .service-card p,.highlight-card p,.outcome-item span{overflow-wrap:break-word}
 @media(max-width:1040px){.nav-wrap .nav-links{display:none}.nav-wrap.nav-open .nav-links{display:flex}.nav-wrap .menu-toggle{display:block}}
 @media(max-width:680px){.hero-home .actions .btn{white-space:normal;text-align:center}.pagehero .actions .btn{white-space:normal;text-align:center}.footer-grid a{min-height:30px}.hero-lead,.lead,.dark-lead{overflow-wrap:break-word}}
+
+/* Accessible secondary hero action */
+.hero .btn-outline,.pagehero .btn-outline{background:transparent;border:1px solid rgba(255,255,255,.65);color:#fff!important}
+.hero .btn-outline:hover,.pagehero .btn-outline:hover{background:#fff;color:#081019!important;box-shadow:0 12px 30px rgba(0,0,0,.15)}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
