@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(isHome)document.body.classList.add('home-page');
   if(page==='about.html')document.body.classList.add('about-page');
   const links=document.querySelector('.nav-links, .links');
-  if(links)links.innerHTML='<a href="workshops.html">Workshops</a><a href="programmes.html">Programmes</a><a href="employee-support.html">Employee Support</a><a href="clinics.html">On-site Clinics</a><a href="about.html">About</a><a class="btn btn-gold" href="contact.html">Discuss Your Workforce</a>';
+  if(links)links.innerHTML='<a href="workshops.html">Clearer Mind Workshops</a><a href="programmes.html">Programmes</a><a href="employee-support.html">Employee Support</a><a href="clinics.html">On-site Clinics</a><a href="about.html">About</a><a class="btn btn-gold" href="contact.html">Discuss Your Workforce</a>';
   document.querySelectorAll('.process-card>div').forEach(row=>{const n=row.querySelector('span');if(n&&n.textContent.trim()==='0')n.textContent='4';});
 
 
