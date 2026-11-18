@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://themindcoachingacademy.github.io/workplace-wellbeing-website/sitemap.xml
